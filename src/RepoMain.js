@@ -48,7 +48,7 @@ function RepoMain() {
     return (
       <div key={i}>
         <h2>{repo.name}</h2>
-        <button onClick={() => navigate(`/${repo.id}`)}>Repo page</button>
+        <button onClick={() => navigate(`/${username}/${repo.id}`)}>Repo page</button>
       </div>
     )
   })

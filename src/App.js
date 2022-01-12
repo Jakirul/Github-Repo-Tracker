@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" exact element={<RepoMain />} />
-      <Route path="/:id" exact element={<RepoData />}/>
+      <Route path="/:username/:id" exact element={<RepoData />}/>
     </Routes>
   );
 }
