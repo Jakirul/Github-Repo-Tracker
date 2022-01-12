@@ -8,22 +8,24 @@ function RepoMain() {
   const [warning, setWarning] = useState()
   const [userData, setUserData] = useState([])
   const [repos, setRepos] = useState([])
+  const [page, setPage] = useState(1)
   const navigate = useNavigate()
 
   const state = useLocation()
 
-  useEffect(() => {
-    if (state.state == 'null' || !state.state) {
-      setUsername("github")
-    } else {
-      setUsername(state.state);
-    }
-  }, [])
+   useEffect(() =>{
+     console.log(state.state)
+     if(state.state == 'null' || !state.state){
+       setUsername('github')
+     }else{
+       setUsername(state.state);
+     }
+   }, [])
 
 
   useEffect(() => {
     async function fetchData() {
-      const user = await fetch(`https://api.github.com/users/${username}/repos`)
+      const user = await fetch(`https://api.github.com/users/${username}/repos?page=${page}`)
       const data = await user.json();
       if (data.length) {
         setRepos(data)
@@ -46,11 +48,22 @@ function RepoMain() {
     fetchData()
     fetchUserData()
 
-  }, [username])
+  }, [username, page])
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setUsername(e.target.user.value)
+  }
+
+  const getNextPage = () =>{
+    if(page < userData.public_repos / 30)
+      setPage(page=>page+1)
+    //console.log(page)
+  }
+
+  const getPrevPage = () =>{
+    if(page > 1)
+      setPage(page=>page-1)
   }
 
   const repositories = repos.map((repo, i) => {
@@ -82,10 +95,12 @@ function RepoMain() {
       }
 
       <p>{userData.bio}</p>
-
+      <p>This user has {userData.public_repos} public repositories</p>
       <div className="inner-repo">
         {repositories}
       </div>
+      <button onClick={getPrevPage}>Prev</button>
+      <button onClick={getNextPage}>Next</button>
     </div>
   );
 }
