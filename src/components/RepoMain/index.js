@@ -57,7 +57,7 @@ function RepoMain() {
   }
 
   const getNextPage = () =>{
-    if(page < userData.public_repos / 30)
+    if(page < Math.ceil(userData.public_repos / 30))
       setPage(page=>page+1)
     //console.log(page)
   }
@@ -98,6 +98,7 @@ function RepoMain() {
       <div className="inner-repo">
         {repositories}
       </div>
+      <p>{page}/{Math.ceil(userData.public_repos / 30)}</p>
       <button onClick={getPrevPage}>Prev</button>
       <button onClick={getNextPage}>Next</button>
     </div>
