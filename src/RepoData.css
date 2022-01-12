@@ -41,7 +41,17 @@ div > .back {
     position: absolute;
     top: 5px;
     right: 5px;
+    border: none;
+    background-color: rgb(191, 224, 191);
+    padding: 7px 20px;
+    border-radius: 0.5em;
 }
+
+div > .back:hover {
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+    background-color: rgb(181, 214, 181);
+}
+
 
 div > .date {
     color: green;
