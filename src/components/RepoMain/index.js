@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import './RepoMain.css'
 
 function RepoMain() {
-  const [username, setUsername] = useState()
+  const [username, setUsername] = useState("github")
   const [warning, setWarning] = useState()
   const [userData, setUserData] = useState([])
   const [repos, setRepos] = useState([])
@@ -12,33 +12,31 @@ function RepoMain() {
 
   const state = useLocation()
 
-   useEffect(() =>{
-     console.log(state.state)
-     if(state.state == 'null' || !state.state){
-       setUsername()
-     }else{
-       setUsername(state.state);
-     }
-   }, [])
+  useEffect(() => {
+    if (state.state == 'null' || !state.state) {
+      setUsername("github")
+    } else {
+      setUsername(state.state);
+    }
+  }, [])
 
 
   useEffect(() => {
-    if (username === undefined) return
-
     async function fetchData() {
       const user = await fetch(`https://api.github.com/users/${username}/repos`)
       const data = await user.json();
-
       if (data.length) {
         setRepos(data)
         setWarning("")
       }
       else {
+        setRepos([])
         setWarning(`No account with the username ${username} has found`)
       }
     }
 
     async function fetchUserData() {
+
       const user = await fetch(`https://api.github.com/users/${username}`)
       const data = await user.json();
 
@@ -63,6 +61,8 @@ function RepoMain() {
       </div>
     );
   })
+
+  console.log(repos)
 
   return (
     <div className="RepoMain">
