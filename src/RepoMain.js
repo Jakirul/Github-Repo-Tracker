@@ -24,14 +24,25 @@ function RepoMain() {
     setUsername(e.target.user.value)
   }
 
-  const repositories = repos.map(repo => {
+  const repositories = (repos) => {
     return (
       <div>
-        <h1>{repo.name}</h1>
-        <button onClick={() => navigate(`/${repo.id}`)}>Click here to go to repo page</button>
+        <ul>
+          {repos.map((repo) => (
+            <li>
+              <h1>{repo.name}</h1>
+              <h3>Number of forks: {repo.forks}</h3>
+              <aside>
+              <h3>{repo.stargazers_count}</h3>
+              </aside>
+              {console.log(repo)}
+              <button onClick={() => navigate(`/${repo.id}`)}>Click here to go to repo page</button>
+            </li>
+          ))}
+        </ul>
       </div>
-    )
-  })
+    );
+  }
 
   return (
     <div>
@@ -40,7 +51,7 @@ function RepoMain() {
         <input type="submit" />
       </form>
 
-      {repositories}
+      {repositories(repos)}
 
     </div>
   );
