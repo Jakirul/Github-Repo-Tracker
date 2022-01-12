@@ -66,7 +66,6 @@ function RepoMain() {
 
   return (
     <div className="RepoMain">
-      <h1>State sent {state.state}</h1>
       <form onSubmit={handleSubmit}>
         <input name="user" required placeholder="Enter GitHub username" />
         <input type="submit" />
