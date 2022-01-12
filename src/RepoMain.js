@@ -13,8 +13,12 @@ function RepoMain() {
   const state = useLocation()
 
    useEffect(() =>{
-     //console.log(state)
-     setUsername(state.state);
+     console.log(state.state)
+     if(state.state == 'null' || !state.state){
+       setUsername()
+     }else{
+       setUsername(state.state);
+     }
    }, [])
 
 
