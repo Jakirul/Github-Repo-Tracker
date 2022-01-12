@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './RepoMain.css'
 
 function RepoMain() {
@@ -9,6 +9,17 @@ function RepoMain() {
   const [userData, setUserData] = useState([])
   const [repos, setRepos] = useState([])
   const navigate = useNavigate()
+
+  const state = useLocation()
+
+   useEffect(() =>{
+     console.log(state.state)
+     if(state.state == 'null' || !state.state){
+       setUsername()
+     }else{
+       setUsername(state.state);
+     }
+   }, [])
 
 
   useEffect(() => {
@@ -50,7 +61,7 @@ function RepoMain() {
         <h2>{repo.name}</h2>
         <button onClick={() => navigate(`/${username}/${repo.id}`)}>Repo page</button>
       </div>
-    )
+    );
   })
 
   return (
@@ -64,7 +75,7 @@ function RepoMain() {
       {Object.keys(userData).length && !warning ?
         <div className="user-info">
           <h1>{userData.login}</h1>
-          <img src={userData.avatar_url} />
+          <img src={userData.avatar_url} alt='avatar' />
         </div>
         :
         null

@@ -43,7 +43,7 @@ const RepoData = () => {
         <div>
             <h1><a href={html_url} target="__blank">{name}</a></h1>
             
-            <button className="back" onClick={() => navigate(-1)}>Go back</button>
+            <button className="back" onClick={() => navigate('/', {state: username})} >Go back</button>
             <p className="description">{description}</p>
             <p className="date">Created at: <b>{date}</b></p>
             
