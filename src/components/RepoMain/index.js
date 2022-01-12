@@ -13,14 +13,14 @@ function RepoMain() {
 
   const state = useLocation()
 
-   useEffect(() =>{
-     console.log(state.state)
-     if(state.state == 'null' || !state.state){
-       setUsername('github')
-     }else{
-       setUsername(state.state);
-     }
-   }, [])
+  useEffect(() => {
+    console.log(state.state)
+    if (state.state == 'null' || !state.state) {
+      setUsername('github')
+    } else {
+      setUsername(state.state);
+    }
+  }, [])
 
 
   useEffect(() => {
@@ -55,15 +55,15 @@ function RepoMain() {
     setUsername(e.target.user.value)
   }
 
-  const getNextPage = () =>{
-    if(page < userData.public_repos / 30)
-      setPage(page=>page+1)
+  const getNextPage = () => {
+    if (page < userData.public_repos / 30)
+      setPage(page => page + 1)
     //console.log(page)
   }
 
-  const getPrevPage = () =>{
-    if(page > 1)
-      setPage(page=>page-1)
+  const getPrevPage = () => {
+    if (page > 1)
+      setPage(page => page - 1)
   }
 
   const repositories = repos.map((repo, i) => {
@@ -95,12 +95,26 @@ function RepoMain() {
       }
 
       <p>{userData.bio}</p>
-      <p>This user has {userData.public_repos} public repositories</p>
+      {
+        repos.length ?
+          <p>This user has {userData.public_repos} public repositories</p>
+          :
+          null
+      }
+
       <div className="inner-repo">
         {repositories}
       </div>
-      <button onClick={getPrevPage}>Prev</button>
-      <button onClick={getNextPage}>Next</button>
+
+      {
+        repos.length ?
+          <div>
+            <button onClick={getPrevPage}>Prev</button>
+            <button onClick={getNextPage}>Next</button>
+          </div>
+          :
+          null
+      }
     </div>
   );
 }
