@@ -7,7 +7,7 @@ const RepoData = () => {
     const [data, setData] = useState([])
     const [repoName, setRepoName] = useState("")
     const [languageList, setLanguageList] = useState([])
-    const {id} = useParams();
+    const {username, id} = useParams();
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const RepoData = () => {
     useEffect(() => {
         if (repoName === "") return
         async function fetchLanguages() {
-            const language = await fetch(`https://api.github.com/repos/Jakirul/${repoName}/languages`)
+            const language = await fetch(`https://api.github.com/repos/${username}/${repoName}/languages`)
             const data = await language.json();
             setLanguageList(data)
         }
