@@ -1,6 +1,6 @@
 
-import React, {useState, useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './RepoMain.css'
 
 function RepoMain() {
@@ -25,7 +25,6 @@ function RepoMain() {
       else {
         setWarning(`No account with the username ${username} has found`)
       }
-      
     }
 
     async function fetchUserData() {
@@ -34,7 +33,7 @@ function RepoMain() {
 
       setUserData(data)
     }
-    
+
     fetchData()
     fetchUserData()
 
@@ -54,7 +53,6 @@ function RepoMain() {
     )
   })
 
-
   return (
     <div className="RepoMain">
       <form onSubmit={handleSubmit}>
@@ -63,22 +61,20 @@ function RepoMain() {
       </form>
       {warning}
 
-      {Object.keys(userData).length && !warning ? 
+      {Object.keys(userData).length && !warning ?
         <div className="user-info">
           <h1>{userData.login}</h1>
           <img src={userData.avatar_url} />
         </div>
-      :
-      null
+        :
+        null
       }
-      
-      <p>{userData.bio}</p>
 
+      <p>{userData.bio}</p>
 
       <div className="inner-repo">
         {repositories}
       </div>
-
     </div>
   );
 }

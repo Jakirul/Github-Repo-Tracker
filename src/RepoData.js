@@ -45,7 +45,7 @@ const RepoData = () => {
             
             <button className="back" onClick={() => navigate(-1)}>Go back</button>
             <p className="description">{description}</p>
-            <p className="date">Created at: {date}</p>
+            <p className="date">Created at: <b>{date}</b></p>
             
             <hr />
 
@@ -56,16 +56,8 @@ const RepoData = () => {
             </div>
 
             <div className="languages">
-                
                 {languageMap}
             </div>
-            
-
-            
-            
-            
-
-            
         </div>
     )
 }

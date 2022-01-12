@@ -23,6 +23,11 @@
     border-radius: 0.5em;
 }
 
+.RepoMain > .inner-repo > div > button:hover {
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+    background-color: rgb(181, 214, 181);
+}
+
 .RepoMain > .user-info {
     display: flex;
     justify-content: center;
