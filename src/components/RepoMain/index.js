@@ -14,7 +14,6 @@ function RepoMain() {
   const state = useLocation()
 
   useEffect(() => {
-    console.log(state.state)
     if (state.state == 'null' || !state.state) {
       setUsername('github')
     } else {
@@ -58,7 +57,6 @@ function RepoMain() {
   const getNextPage = () =>{
     if(page < Math.ceil(userData.public_repos / 30))
       setPage(page=>page+1)
-    //console.log(page)
   }
 
   const getPrevPage = () => {
@@ -74,8 +72,6 @@ function RepoMain() {
       </div>
     );
   })
-
-  console.log(repos)
 
   return (
     <div className="RepoMain">
