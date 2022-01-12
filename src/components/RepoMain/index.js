@@ -105,9 +105,19 @@ function RepoMain() {
       <div className="inner-repo">
         {repositories}
       </div>
-      <p>{page}/{Math.ceil(userData.public_repos / 30)}</p>
-      <button onClick={getPrevPage}>Prev</button>
-      <button onClick={getNextPage}>Next</button>
+
+      {
+        repos.length ?
+          <div>
+            <p>{page}/{Math.ceil(userData.public_repos / 30)}</p>
+            <button onClick={getPrevPage}>Prev</button>
+            <button onClick={getNextPage}>Next</button>
+          </div>
+          :
+          null
+      }
+
+      
     </div>
   );
 }
