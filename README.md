@@ -27,7 +27,7 @@ This is a pair assignment that asked us to make a Github repository tracker usin
 ### Challenges
 - We had an issue initially where the home page's username state would reset after a user clicks on a repository and clicks the 'back' button.
     - For example, if you typed in Github and clicked on a repository, clicking 'back' would show nothing 
-    - This was **fixed** by using `useLocation` in order to save the state.
+    - This was **fixed** by passing the state through the `useNavigation` hook and accessing it with `useLocation`.
 ## Images
 
 ### Home Page
